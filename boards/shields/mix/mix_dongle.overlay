@@ -5,7 +5,7 @@
 *
 */
 
-#include "mix.dtsi"
+#include "mix_dongle.dtsi"
 
 /{
     chosen {
