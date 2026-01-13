@@ -5,7 +5,7 @@
 *
 */
 
-#include "eyeslash_corne.dtsi"
+#include "mixlayout.dtsi"
 
 /{
     chosen {
