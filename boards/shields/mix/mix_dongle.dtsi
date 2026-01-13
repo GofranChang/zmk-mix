@@ -8,6 +8,10 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "mixlayout.dtsi"
 
+&mix_layout {
+    transform = <&default_transform>;
+};
+
 / {
 
     chosen {
@@ -17,10 +21,6 @@
         zmk,underglow = &led_strip;
         zmk,backlight = &backlight;
 
-    };
-
-    &mix_layout {
-        transform = <&default_transform>;
     };
 
 	left_encoder: encoder_left {
