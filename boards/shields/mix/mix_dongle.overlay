@@ -5,7 +5,7 @@
 *
 */
 
-#include "mixlayout.dtsi"
+#include "mix.dtsi"
 
 /{
     chosen {
