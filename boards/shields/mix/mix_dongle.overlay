@@ -5,6 +5,7 @@
 *
 */
 #include "mix_dongle.dtsi"
+#include <dt-bindings/zmk/pointing>
 
 /{
     chosen {
