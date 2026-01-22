@@ -55,16 +55,7 @@
     };
 };
 
-
-
-
-
-
-
-
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 400  // default: 600
-
-
 
 &pinctrl {
     /* configuration for spi1 device, default state */
@@ -134,13 +125,20 @@
         <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
         <&zip_xy_scaler 2 1>;
     };
-          scroller {
+    scroller {
         //layers = <SCROLL>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_scroll_scaler 1 6>;
     }; // end scroller
+    
+    // ========== ✅ 添加这个配置：发送触控板数据到 dongle ==========
+    glidepoint_split {
+        compatible = "zmk,input-split";
+        device = <&glidepoint>;
+        relay-channel = <102>;  // 必须与 dongle 的 relay-channel 一致
+    };
 };
 &right_encoder {
     status = "okay";
