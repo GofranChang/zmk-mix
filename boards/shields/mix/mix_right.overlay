@@ -55,7 +55,7 @@
     };
 };
 
-// #define ZMK_POINTING_DEFAULT_MOVE_VAL 400  // default: 600
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 400  // default: 600
 
 &pinctrl {
     /* configuration for spi1 device, default state */
@@ -77,16 +77,11 @@
             low-power-enable;
         };
     };
-
 };
-
-
-
 
 &default_transform {
     col-offset = <6>;
 };
-
 
 &kscan0 {
     col-gpios
@@ -99,7 +94,7 @@
         ;
 };
 
-
+// ========== 触控板硬件配置 ==========
 &pro_micro_spi {
     status = "okay";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
@@ -116,8 +111,10 @@
         // no-taps;
     };
 };
-//INPUT_TRANSFORM_XY_SWAP
+
+// ========== 触控板输入处理和分割传输配置 ==========
 / {
+    // 本地输入监听器
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
@@ -125,30 +122,24 @@
         <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
         <&zip_xy_scaler 2 1>;
     };
+    
+    // 滚动处理器
     scroller {
         //layers = <SCROLL>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_scroll_scaler 1 6>;
-    }; // end scroller
+    };
     
-    // ========== ✅ 添加这个配置：发送触控板数据到 dongle ==========
-    //glidepoint_split {
-    //    compatible = "zmk,input-split";
-    //    device = <&glidepoint>;
-    //    relay-channel = <102>;  // 必须与 dongle 的 relay-channel 一致
-    //};
-    input_split: input_split {
-        compatible = "zmk,input-split";
-    
-        glidepoint_tx: glidepoint_tx {
-            compatible = "zmk,input-split-listener";
-            device = <&glidepoint>;
-            relay-channel = <102>;
-        };
+    // ========== ✅ 分割输入发送器：发送触控板数据到 dongle ==========
+    input_split_glidepoint {
+        compatible = "zmk,input-split-listener";
+        device = <&glidepoint>;
+        relay-channel = <102>;
     };
 };
+
 &right_encoder {
     status = "okay";
 };
