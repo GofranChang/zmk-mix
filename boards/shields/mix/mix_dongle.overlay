@@ -36,6 +36,7 @@
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&trackpad_virtual>;
+        input-processors = <>;
     };
 };
 
