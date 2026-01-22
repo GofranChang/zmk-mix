@@ -4,7 +4,6 @@
 * SPDX-License-Identifier: MIT
 *
 */
-
 #include "mix_dongle.dtsi"
 
 /{
@@ -12,11 +11,30 @@
         zmk,kscan = &mock_kscan;
         zephyr,display = &oled;
     };
+    
     mock_kscan: kscan_1 {
         compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
         events = <0>;
+    };
+    
+    // === 添加虚拟输入设备（接收副机触控板数据）===
+    trackpad_virtual: virtual_input {
+        compatible = "zmk,virtual-input";
+    };
+    
+    // === 配置输入中继接收器 ===
+    input_relay_config_102 {
+        compatible = "zmk,split-peripheral-input-relay";
+        relay-channel = <102>;        // 与副机配置相同
+        device = <&trackpad_virtual>; // 虚拟设备
+    };
+    
+    // === 输入监听器 ===
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad_virtual>;
     };
 };
 
@@ -27,7 +45,7 @@
                 <NRF_PSEL(TWIM_SCL, 0, 20)>;
         };
     };
-
+    
     i2c0_sleep: i2c0_sleep {
         group1 {
             psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
@@ -38,11 +56,12 @@
 }; 
 
 &i2c0 {
-	status = "okay";
-	compatible = "nordic,nrf-twi";
+    status = "okay";
+    compatible = "nordic,nrf-twi";
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
-	oled: sh1106@3c {
+    
+    oled: sh1106@3c {
         compatible = "sinowealth,sh1106";
         reg = <0x3c>;
         width = <129>;
@@ -55,5 +74,5 @@
         com-invdir;
         inversion-on;
         prechargep = <0x22>;
-	};
+    };
 };
