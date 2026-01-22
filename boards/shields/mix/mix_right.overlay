@@ -134,10 +134,19 @@
     }; // end scroller
     
     // ========== ✅ 添加这个配置：发送触控板数据到 dongle ==========
-    glidepoint_split {
+    //glidepoint_split {
+    //    compatible = "zmk,input-split";
+    //    device = <&glidepoint>;
+    //    relay-channel = <102>;  // 必须与 dongle 的 relay-channel 一致
+    //};
+    input_split: input_split {
         compatible = "zmk,input-split";
-        device = <&glidepoint>;
-        relay-channel = <102>;  // 必须与 dongle 的 relay-channel 一致
+    
+        glidepoint_tx: glidepoint_tx {
+            compatible = "zmk,input-split-listener";
+            device = <&glidepoint>;
+            relay-channel = <102>;
+        };
     };
 };
 &right_encoder {
