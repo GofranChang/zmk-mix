@@ -55,7 +55,16 @@
     };
 };
 
+
+
+
+
+
+
+
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 400  // default: 600
+
+
 
 &pinctrl {
     /* configuration for spi1 device, default state */
@@ -77,11 +86,16 @@
             low-power-enable;
         };
     };
+
 };
+
+
+
 
 &default_transform {
     col-offset = <6>;
 };
+
 
 &kscan0 {
     col-gpios
@@ -94,7 +108,7 @@
         ;
 };
 
-// ========== 触控板硬件配置 ==========
+
 &pro_micro_spi {
     status = "okay";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
@@ -111,55 +125,27 @@
         // no-taps;
     };
 };
-
-// ========== 触控板输入处理和分割传输配置 ==========
+//INPUT_TRANSFORM_XY_SWAP
 / {
-    // 本地输入监听器
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
         input-processors = 
-        <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_xy_scaler 2 1>;
+            <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_scaler 2 1>;
+        
+        // === 添加这一行：将触控板数据通过102通道转发到dongle ===
+        xy-data-relay-channel = <102>;
     };
-    
-    // 滚动处理器
+          
     scroller {
         //layers = <SCROLL>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_scroll_scaler 1 6>;
-    };
-    
-    // ========== ✅ 分割输入发送器：发送触控板数据到 dongle ==========
-    input_split_glidepoint {
-        compatible = "zmk,input-split-listener";
-        device = <&glidepoint>;
-        relay-channel = <102>;
-    };
+    }; // end scroller
 };
-
 &right_encoder {
     status = "okay";
-};
-
-&pro_micro_i2c {
-    status = "okay";
-
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        inversion-on;
-        prechargep = <0x22>;
-    };
 };

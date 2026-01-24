@@ -31,6 +31,12 @@
         relay-channel = <102>;        // 与副机配置相同
         device = <&trackpad_virtual>; // 虚拟设备
     };
+
+    // === 添加输入监听器（将虚拟设备数据转为鼠标移动）===
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad_virtual>;
+    };
 };
 
 &pinctrl {
