@@ -11,7 +11,7 @@
     chosen {
         zmk,kscan = &mock_kscan;
         zephyr,display = &oled;
-        zmk,backlight = &backlight;  
+        // zmk,backlight = &backlight;  
     };
     mock_kscan: kscan_1 {
         compatible = "zmk,kscan-mock";
