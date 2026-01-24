@@ -1,4 +1,7 @@
 # No whitespace after the comma or in your keyboard name!
+config SHIELD_MIX_DONGLE
+    def_bool $(shields_list_contains,mix_dongle)
+
 config SHIELD_MIX_LEFT
     def_bool $(shields_list_contains,mix_left)
 
