@@ -18,7 +18,6 @@
 
 / {
     chosen {
-        zephyr,display = &oled;
         zmk,physical-layout = &mix_layout;
     };
 
