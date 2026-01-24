@@ -5,6 +5,7 @@
  */
 
 #include "mix.dtsi"
+#include "mix_keyboard.dtsi"
 
 #include <dt-bindings/zmk/outputs.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>

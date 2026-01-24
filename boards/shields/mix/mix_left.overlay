@@ -5,6 +5,7 @@
  */
 
 #include "mix.dtsi"
+#include "mix_keyboard.dtsi"
 
 #include <dt-bindings/led/led.h>
 &pinctrl {
