@@ -42,6 +42,14 @@
   };
 };
 
+/ {
+    chosen {
+        zmk,underglow = &led_strip;
+        zmk,kscan = &kscan0;
+    };
+};
+
+
 &kscan0 {
     compatible = "zmk,kscan-gpio-matrix";
     wakeup-source;
@@ -63,13 +71,6 @@
         , <&pro_micro 15 GPIO_ACTIVE_HIGH>
         , <&pro_micro 14 GPIO_ACTIVE_HIGH>
         ;
-};
-
-/ {
-    chosen {
-        zmk,underglow = &led_strip;
-        zmk,kscan = &kscan0;
-    };
 };
 
 &pro_micro_spi {
