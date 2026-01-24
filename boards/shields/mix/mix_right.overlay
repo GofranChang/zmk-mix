@@ -131,14 +131,10 @@
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
         input-processors = 
-            <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
-            <&zip_xy_scaler 2 1>;
-        
-        // === 添加这一行：将触控板数据通过102通道转发到dongle ===
-        xy-data-relay-channel = <102>;
+        <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
+        <&zip_xy_scaler 2 1>;
     };
-          
-    scroller {
+          scroller {
         //layers = <SCROLL>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,

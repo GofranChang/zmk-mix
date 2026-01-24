@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: mix}
 layers:
-  win:
+  default:
   - ESCAPE
   - '1'
   - '2'
@@ -52,71 +52,12 @@ layers:
   - LCTRL
   - MUTE
   - LGUI
-  - mac
-  - SPACE
-  - SPACE
   - lower
-  - RALT
-  - {t: SPACE, h: raise}
-  - ENTER
-  mac:
-  - ESCAPE
-  - '1'
-  - '2'
-  - '3'
-  - '4'
-  - '5'
-  - '6'
-  - '7'
-  - '8'
-  - '9'
-  - '0'
-  - BSPC
-  - TAB
-  - Q
-  - W
-  - E
-  - R
-  - T
-  - Y
-  - U
-  - I
-  - O
-  - P
-  - \
-  - CAPS
-  - A
-  - S
-  - D
-  - F
-  - G
-  - H
-  - J
-  - K
-  - L
-  - ;
-  - ''''
-  - LSHFT
-  - Z
-  - X
-  - C
-  - V
-  - B
-  - N
-  - M
-  - ','
-  - .
-  - /
-  - RSHFT
-  - LCTRL
-  - MUTE
-  - LGUI
-  - {t: mac, type: held}
   - SPACE
   - SPACE
-  - lower
+  - raise
   - RALT
-  - {t: SPACE, h: raise}
+  - {t: SPACE, h: '3'}
   - ENTER
   lower:
   - F12
@@ -170,10 +111,10 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -232,11 +173,11 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
-  '4':
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  '3':
   - BT CLR
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
@@ -293,7 +234,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
 combos:
 - p: [0, 52, 53, 11]
