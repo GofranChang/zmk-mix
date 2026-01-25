@@ -58,3 +58,7 @@
         prechargep = <0x22>;
 	};
 };
+
+&glidepoint_listener {
+    status = "okay";
+};
