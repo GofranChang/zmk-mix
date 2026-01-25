@@ -18,6 +18,23 @@
     transform = <&default_transform>;
 };
 
+&pro_micro_spi {
+    status = "okay";
+    cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
+
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        dr-gpios = <&gpio1 04 (GPIO_ACTIVE_HIGH)>;
+
+        sensitivity = "2x";
+        sleep;
+        // no-taps;
+    };
+};
+
 / {
     chosen {
         zmk,physical-layout = &mix_layout;
@@ -37,27 +54,6 @@ RC(4,0) RC(4,1)         RC(4,3) RC(4,4) RC(4,5)  RC(4,6) RC(4,7) RC(4,8)        
         >;
     };
 
-};
-
-&pro_micro_spi {
-    status = "okay";
-    cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
-
-    glidepoint: glidepoint@0 {
-        compatible = "cirque,pinnacle";
-        reg = <0>;
-        spi-max-frequency = <1000000>;
-        status = "okay";
-        dr-gpios = <&gpio1 04 (GPIO_ACTIVE_HIGH)>;
-
-        sensitivity = "2x";
-        sleep;
-        // no-taps;
-    };
-};
-
-//INPUT_TRANSFORM_XY_SWAP
-/ {
     //split_inputs {
     //    #address-cells = <1>;
     //    #size-cells = <0>;
@@ -86,5 +82,4 @@ RC(4,0) RC(4,1)         RC(4,3) RC(4,4) RC(4,5)  RC(4,6) RC(4,7) RC(4,8)        
             &zip_scroll_scaler 1 6
         >;
     }; // end scroller
-    
 };
