@@ -6,6 +6,7 @@
 */
 
 #include "mix.dtsi"
+#include "mix_trackpad.dtsi"
 
 /{
     chosen {
