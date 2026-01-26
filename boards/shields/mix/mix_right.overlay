@@ -127,6 +127,8 @@
         // no-taps;
     };
 };
+
+/*
 //INPUT_TRANSFORM_XY_SWAP
 / {
     glidepoint_listener {
@@ -145,6 +147,7 @@
             <&zip_scroll_scaler 1 6>;
     }; // end scroller
 };
+*/
 
 &glidepoint_split {
     device = <&glidepoint>;
